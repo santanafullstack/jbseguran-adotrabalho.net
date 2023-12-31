@@ -1,0 +1,344 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+
+    <div class="card mt-5">
+        <div class="card-body">
+            <div class="row mb-2 mt-4">
+                <div class="col-md-10 mt-1">
+                    <h5>Cadastrar Turmas</h5>
+                    <p>Preencha os campos para incluir uma Turma.</p>
+                </div>
+                <div class="col-md-2 mt-1">
+                    <a href="consultar-unidade" class="btn btn-primary">Cadastar Unidade</a>
+                </div>
+            </div>
+            <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{mensagem}}</strong>
+                <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+            </div>
+            <hr />
+
+            <form [formGroup]="formTurmas" (ngSubmit)="onSubmit()">
+            
+            <div class="row">
+
+                <div class="col-md-5 mt-3">
+                    <label for="formFile" class="form-label">Curso</label>
+                    <select class="form-select" formControlName="idCurso">
+                        <option [value]="c.idcurso" *ngFor="let c of cursos">
+                          {{ c.curso | uppercase }}
+                          {{ c.status | uppercase }}
+                          {{ c.modelo_certificado | uppercase }}
+                          {{ c.campo_especifico | uppercase }}
+                        </option>
+                      </select>
+                </div>	
+
+                <div class="col-md-3 mt-3">
+                    <label for="formFile" class="form-label">Unidade</label>
+                    <select class="form-select" formControlName="idUnidadeDeTreinamento">
+                        <option [value]="item.idUnidadedetreinamento" *ngFor="let item of unidades">
+                          {{ item.unidadedetreinamento | uppercase }}
+                          {{ item.cnpj | uppercase }}
+                          {{ item.unidade | uppercase }}
+
+
+                        </option>
+                      </select>
+                </div>	
+                <div class="col-md-2 mt-4"> <label>Data de Inicio</label> <input type="datetime-local"  formControlName="datainicio" class="form-control" /></div>
+                <div class="col-md-2 mt-4"> <label>Data de Fim</label><input   type="datetime-local" formControlName="datafim"class="form-control" /></div>
+                
+            </div>	
+  
+            <div class="row">
+                <div class="col-md-5 mt-4">
+                    <select class="form-select"
+                    formControlName="descricao"
+                    aria-label="Default select example">
+                        <option selected>Selecione a Descrição da Turmas</option>
+                        <option value="Disposições Gerais">Disposições Gerais</option>
+                        <option value="Comissão Interna de Prevenção de Acidentes">Comissão Interna de Prevenção de Acidentes</option>
+                        <option value="EPI - Equipamento de Proteção Individual e EPC - Equipamento de Proteção Coletiva">EPI - Equipamento de Proteção Individual e EPC - Equipamento de Proteção Coletiva</option>
+                        <option value="Primeiros Socorros">Primeiros Socorros</option>
+                        <option value="Segurança em Instalações Elétricas">Segurança em Instalações Elétricas</option>
+                        <option value="Sistema Elétrico de Potência">Sistema Elétrico de Potência</option>
+                        <option value="Transporte, Movimentação, Armazenagem e Manuseio de Materiais">Transporte, Movimentação, Armazenagem e Manuseio de Materiais</option>
+                        <option value="Segurança no Trabalho em Máquinas e Equipamentos">Segurança no Trabalho em Máquinas e Equipamentos</option>
+                        <option value="1">Caldeiras, Vasos de Pressão, Tubulações e Tanques Metálicos de Armazenamento</option>
+                        <option value="Atividades e Operações Insalubres">Atividades e Operações Insalubres</option>
+                        <option value="Atividades e Operações Perigosas">Atividades e Operações Perigosas</option>
+                        <option value="Ergonomia">Ergonomia</option>
+                        <option value="Segurança e Saúde no Trabalho na Indústria da Construção">Segurança e Saúde no Trabalho na Indústria da Construção</option>
+                        <option value="Atmosferas Explosivas">Atmosferas Explosivas</option>
+                        <option value="Segurança e Saúde no Trabalho com Inflamáveis e Combustiveis">Segurança e Saúde no Trabalho com Inflamáveis e Combustiveis</option>
+                        <option value="Proteção contra Incêndios">Proteção contra Incêndios</option>
+                        <option value="Sinalização de Segurança">Sinalização de Segurança</option>
+                        <option value="Segurança e Saúde no Trabalho Aquaviário">Segurança e Saúde no Trabalho Aquaviário</option>
+                        <option value="Segurança e Saúde no Trabalho na Agricultura, Pecuária, Silvicultura, Exploração Florestal e Aquicultura">Segurança e Saúde no Trabalho na Agricultura, Pecuária, Silvicultura, Exploração Florestal e Aquicultura</option>
+                        <option value="Segurança e Saúde no Trabalho em Serviços de Saúde">Segurança e Saúde no Trabalho em Serviços de Saúde</option>
+                        <option value="Segurança e Saúde no Trabalho em Espaços Confinados">Segurança e Saúde no Trabalho em Espaços Confinados</option>
+                        <option value="Condições e Meio Ambiente de Trabalho na Indústria da Construção, Reparação e Desmonte Naval">Condições e Meio Ambiente de Trabalho na Indústria da Construção, Reparação e Desmonte Naval</option>
+                        <option value="Segurança em Trabalhos em Altura">Segurança em Trabalhos em Altura</option>
+                        <option value="Segurança e Saúde no Trabalho em Empresas de Abate e Processamento de Carnes e Derivados">Segurança e Saúde no Trabalho em Empresas de Abate e Processamento de Carnes e Derivados</option>
+                        <option value="Segurança e Saúde em Plataformas de Petróleo">Segurança e Saúde em Plataformas de Petróleo</option>
+                        <option value="Atividades de Limpeza Urbana e Manejo de Resíduos Sólidos">Atividades de Limpeza Urbana e Manejo de Resíduos Sólidos</option>
+
+                    </select>
+                </div>
+
+
+                <div class="col-md-3 mt-4">
+                    <select class="form-select" 
+                    formControlName="nivel"
+                    aria-label="Default select example">
+                        <option selected>Nivel do Curso</option>
+                        <option value="Inicial">Inicial</option>
+                        <option value="Periodico">Períodico</option>
+                        <option value="Eventual">Eventual</option>
+                        <option value="Formação">Formação</option>
+                        <option value="Reciclagem">Reciclagem</option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-2 mt-4">
+                    <select class="form-select" 
+                    formControlName="tipo"
+                    aria-label="Default select example">
+                        <option selected>Tipo</option>
+                        <option value="Básico">Básico</option>
+                        <option value="Operador">Operador</option>
+                        <option value="Resgate em Altura">Resgate em Altura</option>
+                        <option value="Resgate em Espaço Confinado">Resgate em Espaço Confinado</option>
+                        <option value="Trabalhador Autorizado e Vigia">Trabalhador Autorizado e Vigia</option>
+                        <option value="Operador de Motoserra">Operador de Motoserra</option>
+                        <option value="Operador de Motopoda">Operador de Motopoda</option>
+                        <option value="Operador de Roçadeira">Operador de Roçadeira</option>
+                        <option value="Operador de Empilhadeira">Operador de Empilhadeira</option>
+                        <option value="Operador de Plataforma de Trabalho Aéreo">Operador de Plataforma de Trabalho Aéreo</option>
+                        <option value="Montador de Andaimes">Montador de Andaimes</option>
+
+
+
+
+                    </select>
+                </div>
+                <div class="col-md-2 mt-4">
+                    <select class="form-select" 
+                    formControlName="cargahoraria"
+                    aria-label="Default select example">
+                        <option selected>Carga Horária</option>
+                        <option value="1 Hora">1 Hora</option>
+                        <option value="2 Horas">2 Horas</option>
+                        <option value="4 Horas">4 Horas</option>
+                        <option value="6 Horas">6 Horas</option>
+                        <option value="8 Horas">8 Horas</option>
+                        <option value="10 Horas">10 Horas</option>
+                        <option value="12 Horas">12 Horas</option>
+                        <option value="16 Horas">16 Horas</option>
+                        <option value="20 Horas">20 Horas</option>
+                        <option value="24 Horas">24 Horas</option>
+                        <option value="32 Horas">32 Horas</option>
+                        <option value="40 Horas">40 Horas</option>
+                    </select>
+                </div>                   
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-5 mt-4">
+                    <input placeholder="Ex: 1, 2, 3 e 4 de Maio de 2023." 
+                    formControlName="diasespecificos"
+                    type="text" name="nome" id="nome"
+                        class="form-control" />
+                </div>
+                <div class="col-md-3 mt-4">
+
+                    <select class="form-select"
+                    formControlName="dia"
+                    aria-label="Default select example">
+                        <option selected>Dia</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+
+
+                    </select>
+                </div>
+
+                <div class="col-md-2 mt-4">
+
+                    <select class="form-select" 
+                    formControlName="mes"
+                    aria-label="Default select example">
+                        <option value="Janeiro">Janeiro</option>
+                        <option value="Fevereiro">Fevereiro</option>
+                        <option value="Março">Março</option>
+                        <option value="Abril">Abril</option>
+                        <option value="Maio">Maio</option>
+                        <option value="Junho">Junho</option>
+                        <option value="Julho">Julho</option>
+                        <option value="Agosto">Agosto</option>
+                        <option value="Setembro">Setembro</option>
+                        <option value="Outubro">Outubro</option>
+                        <option value="Novembro">Novembro</option>
+                        <option value="Dezembro">Dezembro</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 mt-4">
+
+                    <select class="form-select" 
+                    formControlName="ano"
+                    aria-label="Default select example">
+                        <option selected>2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                        <option value="2033">2033</option>
+                        <option value="2034">2034</option>
+                        <option value="2035">2035</option>
+                        <option value="2036">2036</option>
+                        <option value="2037">2037</option>
+                        <option value="2038">2038</option>
+                        <option value="2039">2039</option>
+                        <option value="2040">2040</option>
+                    </select>
+                </div>
+
+              
+            </div>
+            <div class="row">
+
+                <div class="col-md-5 mt-4">
+                    <select class="form-select" 
+                    formControlName="modalidade"
+                    aria-label="Default select example">
+                        <option selected>Modalidade</option>
+                        <option value="Presencial">Presencial</option>
+                        <option value="EAD">EAD</option>
+                        <option value="Hibrido">Hibrido</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 mt-4">
+                    <select class="form-select" 
+                    formControlName="status"
+                    aria-label="Default select example">
+                        <option selected>Status da Turma</option>
+                        <option value="agendada">Agendada</option>
+                        <option value="acontecendo">Acontecendo</option>
+                        <option value="finalizada">Finalizada</option>
+                    </select>
+                </div> 
+                
+                  <div class="col-md-4 mt-4">
+                <select class="form-select" 
+                formControlName="validade"
+                aria-label="Default select example">
+                    <option selected>Validade</option>
+                    <option value="1 Ano"> 1 Ano </option>
+                    <option value="2 Anos"> 2 Anos</option>
+                    <option value="3 Anos"> 3 Anos </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3 text-danger">
+
+        <Strong>Preencha os campos para incluir os dias especificos de curso para a lista de Presença como no Exemplo abaixo.</Strong>
+        <Strong >OBSERVAÇÃO: Preenchimento obrigatório ! Só alimentar os dias de curso !</Strong>
+
+    </div>
+
+
+   <div class="row">
+    <div class="col-md-3 mt-2">
+                     <input placeholder="Ex: 1 de Maio de 2023." 
+                     formControlName="primeirodia"
+                     type="text" name="nome" id="nome"
+                         class="form-control" />
+                 </div>
+                 
+                 
+                    <div class="col-md-2 mt-2">
+                     <input placeholder="2 de Maio de 2023." 
+                     formControlName="segundodia"
+                     type="text" name="nome" id="nome"
+                         class="form-control" />
+                 </div>
+                 
+                    <div class="col-md-3 mt-2">
+                     <input placeholder="2 de Maio de 2023." 
+                     formControlName="terceirodia"
+                     type="text" name="nome" id="nome"
+                         class="form-control" />
+                 </div>
+                 
+                        <div class="col-md-2 mt-2">
+                     <input placeholder="2 de Maio de 2023." 
+                     formControlName="quartodia"
+                     type="text" name="nome" id="nome"
+                         class="form-control" />
+                 </div>
+                 
+                        <div class="col-md-2 mt-2">
+                     <input placeholder="2 de Maio de 2023." 
+                     formControlName="quintodia"
+                     type="text" name="nome" id="nome"
+                         class="form-control" />
+                 </div>
+     </div>
+            
+                      
+ 
+
+                <div class="row mb-2 mt-5">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success" value="Realizar Cadastro" />
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
